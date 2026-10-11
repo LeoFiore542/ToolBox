@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToolBox — Strumenti digitali</title>
+  <meta name="description" content="Una raccolta di strumenti digitali utili. Inizia dal generatore di QR code." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Strumenti" aria-hidden="true">
+    <div class="sidebar-top">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">ToolBox</span>
+      </a>
+      <button type="button" class="icon-btn" id="sidebar-close" aria-label="Chiudi menu strumenti">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <p class="sidebar-label">Strumenti</p>
+    <nav class="sidebar-nav">
+      <a class="sidebar-link" href="tools/qr.html">
+        <span class="sidebar-index">01</span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Generatore QR</span>
+          <span class="sidebar-desc">Link → codice scaricabile</span>
+        </span>
+      </a>
+    </nav>
+
+    <p class="sidebar-foot">GitHub Pages</p>
+  </aside>
+
+  <div class="content">
+    <header class="topbar">
+      <button
+        type="button"
+        class="icon-btn menu-btn"
+        id="sidebar-toggle"
+        aria-expanded="false"
+        aria-controls="sidebar"
+        aria-label="Apri menu strumenti"
+      >
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+      <a class="brand brand-compact" href="index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">ToolBox</span>
+      </a>
+    </header>
+
+    <main class="home">
+      <section class="hero">
+        <h1 class="hero-brand">ToolBox</h1>
+        <p class="hero-lead">Una cassetta degli attrezzi digitale. Piccoli strumenti, pronti all’uso. Apri il menu laterale per sceglierne uno.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>ToolBox · pubblicata su GitHub Pages</p>
+    </footer>
+  </div>
+
+  <script src="assets/nav.js"></script>
+</body>
+</html>
