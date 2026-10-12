@@ -470,6 +470,10 @@ body.sidebar-open .sidebar {
     rgba(255, 255, 255, 0.4);
 }
 
+.qr-placeholder[hidden] {
+  display: none;
+}
+
 .site-footer {
   max-width: 920px;
   width: 100%;
