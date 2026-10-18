@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown — ToolBox</title>
+  <meta name="description" content="Imposta un orario e conta i secondi rimanenti fino a quel momento." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Strumenti" aria-hidden="true">
+    <div class="sidebar-top">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">ToolBox</span>
+      </a>
+      <button type="button" class="icon-btn" id="sidebar-close" aria-label="Chiudi menu strumenti">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <p class="sidebar-label">Strumenti</p>
+    <nav class="sidebar-nav">
+      <a class="sidebar-link" href="qr.html">
+        <span class="sidebar-index">01</span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Generatore QR</span>
+          <span class="sidebar-desc">Link → codice scaricabile</span>
+        </span>
+      </a>
+      <a class="sidebar-link is-active" href="countdown.html" aria-current="page">
+        <span class="sidebar-index">02</span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Countdown</span>
+          <span class="sidebar-desc">Timer fino a un orario</span>
+        </span>
+      </a>
+    </nav>
+
+    <p class="sidebar-foot">GitHub Pages</p>
+  </aside>
+
+  <div class="content">
+    <header class="topbar">
+      <button
+        type="button"
+        class="icon-btn menu-btn"
+        id="sidebar-toggle"
+        aria-expanded="false"
+        aria-controls="sidebar"
+        aria-label="Apri menu strumenti"
+      >
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+      <a class="brand brand-compact" href="../index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">ToolBox</span>
+      </a>
+    </header>
+
+    <main class="tool-page">
+      <header class="tool-intro">
+        <p class="eyebrow">02 · Strumento</p>
+        <h1>Countdown</h1>
+        <p class="tool-intro-text">Scegli un orario: il timer si apre a tutto schermo e conta fino a quel momento. Se l’ora è già passata, punta a domani.</p>
+      </header>
+
+      <form id="countdown-form" class="qr-form countdown-setup" novalidate>
+        <span class="countdown-field-label" id="countdown-time-label">Orario obiettivo</span>
+
+        <div class="countdown-time-picker" role="group" aria-labelledby="countdown-time-label">
+          <label class="countdown-time-part">
+            <span class="countdown-time-caption">Ore</span>
+            <input
+              id="countdown-hours"
+              name="hours"
+              type="number"
+              inputmode="numeric"
+              min="0"
+              max="23"
+              step="1"
+              placeholder="00"
+              required
+            />
+          </label>
+          <span class="countdown-time-colon" aria-hidden="true">:</span>
+          <label class="countdown-time-part">
+            <span class="countdown-time-caption">Minuti</span>
+            <input
+              id="countdown-minutes"
+              name="minutes"
+              type="number"
+              inputmode="numeric"
+              min="0"
+              max="59"
+              step="1"
+              placeholder="00"
+              required
+            />
+          </label>
+        </div>
+
+        <div class="countdown-presets" aria-label="Scorciatoie">
+          <button type="button" class="countdown-preset" data-offset="15">+15 min</button>
+          <button type="button" class="countdown-preset" data-offset="30">+30 min</button>
+          <button type="button" class="countdown-preset" data-offset="60">+1 ora</button>
+        </div>
+
+        <p id="countdown-hint" class="countdown-hint"></p>
+        <p id="countdown-error" class="form-error" role="alert" hidden></p>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Avvia</button>
+        </div>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <p>ToolBox · countdown</p>
+    </footer>
+  </div>
+
+  <section
+    id="countdown-stage"
+    class="countdown-stage"
+    hidden
+    aria-live="polite"
+    aria-label="Countdown a tutto schermo"
+  >
+    <button type="button" id="countdown-close" class="icon-btn countdown-close" aria-label="Chiudi countdown">
+      <span aria-hidden="true">×</span>
+    </button>
+
+    <p id="countdown-target" class="countdown-stage-target"></p>
+
+    <div id="countdown-display" class="countdown-display">
+      <div class="countdown-unit">
+        <span id="cd-hours" class="countdown-value">00</span>
+        <span class="countdown-label">ore</span>
+      </div>
+      <span class="countdown-sep" aria-hidden="true">:</span>
+      <div class="countdown-unit">
+        <span id="cd-minutes" class="countdown-value">00</span>
+        <span class="countdown-label">min</span>
+      </div>
+      <span class="countdown-sep" aria-hidden="true">:</span>
+      <div class="countdown-unit">
+        <span id="cd-seconds" class="countdown-value">00</span>
+        <span class="countdown-label">sec</span>
+      </div>
+    </div>
+
+    <p id="countdown-done" class="countdown-done" hidden>Tempo scaduto</p>
+
+    <div class="countdown-progress-wrap">
+      <div
+        class="countdown-progress"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="100"
+        aria-label="Tempo rimanente"
+      >
+        <div id="countdown-progress-bar" class="countdown-progress-bar"></div>
+      </div>
+    </div>
+
+    <button type="button" id="countdown-reset" class="btn btn-secondary countdown-stage-reset">
+      Chiudi
+    </button>
+  </section>
+
+  <script src="../assets/nav.js"></script>
+  <script src="../assets/countdown.js"></script>
+</body>
+</html>

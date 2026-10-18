@@ -2,9 +2,10 @@
 
 Cassetta degli attrezzi digitale pubblicabile su **GitHub Pages**.
 
-Per ora include un solo strumento:
+Strumenti disponibili:
 
 - **Generatore QR** — crea un codice QR da un link e lo scarica in PNG
+- **Countdown** — inserisci un orario e conta fino a quel momento
 
 ## Anteprima locale
 
@@ -40,12 +41,15 @@ Il sito sarà disponibile su:
 
 ```
 ToolBox/
-├── index.html          # Home con elenco strumenti
+├── index.html          # Home
 ├── tools/
-│   └── qr.html         # Generatore QR
+│   ├── qr.html         # Generatore QR
+│   └── countdown.html  # Countdown orario
 ├── assets/
 │   ├── styles.css
-│   └── qr.js
+│   ├── nav.js
+│   ├── qr.js
+│   └── countdown.js
 └── README.md
 ```
 
