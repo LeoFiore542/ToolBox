@@ -111,7 +111,7 @@
       <header class="tool-intro">
         <p class="eyebrow">Strumento</p>
         <h1>Voce limpida</h1>
-        <p class="tool-intro-text">Carica un file parlato: filtri, compressione e normalizzazione lo rendono più chiaro. Tutto resta nel browser.</p>
+        <p class="tool-intro-text">Carica un file parlato, scegli gli effetti e vedi la forma d’onda. Tutto resta nel browser.</p>
       </header>
 
       <div class="voce-layout">
@@ -129,40 +129,98 @@
             <input id="voce-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.webm,.aac" hidden />
           </div>
 
-          <label for="voce-intensity">Intensità</label>
+          <label for="voce-intensity">Intensità base</label>
           <select id="voce-intensity" name="intensity">
             <option value="light">Leggera</option>
             <option value="medium" selected>Media</option>
             <option value="strong">Forte</option>
           </select>
 
+          <fieldset class="voce-effects" id="voce-effects">
+            <legend>Effetti</legend>
+
+            <label class="voce-effect">
+              <input type="checkbox" name="fx" value="highpass" checked />
+              <span>
+                <span class="voce-effect-title">High-pass (~80 Hz)</span>
+                <span class="voce-effect-desc">Toglie rumore di fondo grave / rumble</span>
+              </span>
+            </label>
+
+            <label class="voce-effect">
+              <input type="checkbox" name="fx" value="lowpass" checked />
+              <span>
+                <span class="voce-effect-title">Low-pass (~8–10 kHz)</span>
+                <span class="voce-effect-desc">Taglia hiss inutile per la voce</span>
+              </span>
+            </label>
+
+            <label class="voce-effect">
+              <input type="checkbox" name="fx" value="gate" checked />
+              <span>
+                <span class="voce-effect-title">Noise gate</span>
+                <span class="voce-effect-desc">Attenua i silenzi rumorosi</span>
+              </span>
+            </label>
+
+            <label class="voce-effect">
+              <input type="checkbox" name="fx" value="compressor" checked />
+              <span>
+                <span class="voce-effect-title">Compressore</span>
+                <span class="voce-effect-desc">Livella il volume della voce</span>
+              </span>
+            </label>
+
+            <label class="voce-effect">
+              <input type="checkbox" name="fx" value="presence" checked />
+              <span>
+                <span class="voce-effect-title">EQ presenza (~2–4 kHz)</span>
+                <span class="voce-effect-desc">Boost di chiarezza sulla voce</span>
+              </span>
+            </label>
+
+            <label class="voce-effect">
+              <input type="checkbox" name="fx" value="normalize" checked />
+              <span>
+                <span class="voce-effect-title">Normalizzazione / limiter</span>
+                <span class="voce-effect-desc">Volume finale uniforme, senza clipping</span>
+              </span>
+            </label>
+          </fieldset>
+
           <p id="voce-meta" class="voce-meta">Nessun file</p>
           <p id="voce-error" class="form-error" role="alert" hidden></p>
 
           <div class="form-actions">
-            <button type="button" id="voce-enhance" class="btn btn-primary" disabled>Migliora</button>
+            <button type="button" id="voce-enhance" class="btn btn-primary" disabled>Applica effetti</button>
             <button type="button" id="voce-clear" class="btn btn-secondary" disabled>Svuota</button>
           </div>
         </div>
 
         <div class="voce-preview" aria-live="polite">
-          <p id="voce-empty" class="voce-empty">Carica un file per ascoltare e scaricare il risultato</p>
+          <p id="voce-empty" class="voce-empty">Carica un file per vedere la traccia e applicare gli effetti</p>
 
           <div id="voce-panel" class="voce-panel" hidden>
-            <div class="voce-row">
-              <div>
-                <p class="voce-row-label">Originale</p>
-                <p id="voce-orig-name" class="voce-row-name">—</p>
+            <div class="voce-wave-block">
+              <div class="voce-wave-head">
+                <div>
+                  <p class="voce-row-label">Originale</p>
+                  <p id="voce-orig-name" class="voce-row-name">—</p>
+                </div>
+                <button type="button" id="voce-play-orig" class="btn btn-secondary">Ascolta</button>
               </div>
-              <button type="button" id="voce-play-orig" class="btn btn-secondary">Ascolta</button>
+              <canvas id="voce-wave-orig" class="voce-wave" width="640" height="96" aria-label="Forma d’onda originale"></canvas>
             </div>
 
-            <div class="voce-row">
-              <div>
-                <p class="voce-row-label">Elaborato</p>
-                <p id="voce-proc-status" class="voce-row-name">Non ancora migliorato</p>
+            <div class="voce-wave-block">
+              <div class="voce-wave-head">
+                <div>
+                  <p class="voce-row-label">Elaborato</p>
+                  <p id="voce-proc-status" class="voce-row-name">Non ancora elaborato</p>
+                </div>
+                <button type="button" id="voce-play-proc" class="btn btn-secondary" disabled>Ascolta</button>
               </div>
-              <button type="button" id="voce-play-proc" class="btn btn-secondary" disabled>Ascolta</button>
+              <canvas id="voce-wave-proc" class="voce-wave" width="640" height="96" aria-label="Forma d’onda elaborata"></canvas>
             </div>
 
             <div class="form-actions">
