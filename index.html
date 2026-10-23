@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ToolBox — Strumenti digitali</title>
-  <meta name="description" content="Una raccolta di strumenti digitali utili. Inizia dal generatore di QR code." />
+  <meta name="description" content="Una raccolta di strumenti digitali utili: generatore QR, countdown e convertitore foto in PDF." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -30,17 +30,44 @@
     <p class="sidebar-label">Strumenti</p>
     <nav class="sidebar-nav">
       <a class="sidebar-link" href="tools/qr.html">
-        <span class="sidebar-index">01</span>
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.2" />
+            <rect x="14" y="3" width="7" height="7" rx="1.2" />
+            <rect x="3" y="14" width="7" height="7" rx="1.2" />
+            <path d="M14 14h2.5v2.5H14zM18.5 14H21v3h-2.5zM14 18.5h3V21h-1.5M18.5 18.5H21V21" />
+          </svg>
+        </span>
         <span class="sidebar-text">
           <span class="sidebar-title">Generatore QR</span>
           <span class="sidebar-desc">Link → codice scaricabile</span>
         </span>
       </a>
       <a class="sidebar-link" href="tools/countdown.html">
-        <span class="sidebar-index">02</span>
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8" />
+            <path d="M12 9v4l2.5 1.5" />
+            <path d="M9 3h6" />
+          </svg>
+        </span>
         <span class="sidebar-text">
           <span class="sidebar-title">Countdown</span>
           <span class="sidebar-desc">Timer fino a un orario</span>
+        </span>
+      </a>
+      <a class="sidebar-link" href="tools/foto-pdf.html">
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9z" />
+            <path d="M14 3v6h6" />
+            <rect x="8" y="12" width="8" height="6" rx="1" />
+            <circle cx="10.2" cy="14" r="0.7" fill="currentColor" stroke="none" />
+          </svg>
+        </span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Foto → PDF</span>
+          <span class="sidebar-desc">Immagini in un documento</span>
         </span>
       </a>
     </nav>
@@ -69,7 +96,58 @@
     <main class="home">
       <section class="hero">
         <h1 class="hero-brand">ToolBox</h1>
-        <p class="hero-lead">Una cassetta degli attrezzi digitale. Piccoli strumenti, pronti all’uso. Apri il menu laterale per sceglierne uno.</p>
+        <p class="hero-lead">Una cassetta degli attrezzi digitale. Piccoli strumenti, pronti all’uso.</p>
+      </section>
+
+      <section class="tools-section" aria-labelledby="tools-heading">
+        <div class="tools-section-head">
+          <p class="eyebrow">Strumenti</p>
+          <h2 id="tools-heading">Scegli un tool</h2>
+        </div>
+
+        <div class="tools-grid">
+          <a class="tool-tile" href="tools/qr.html">
+            <span class="tool-icon tool-icon-lg" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1.2" />
+                <rect x="14" y="3" width="7" height="7" rx="1.2" />
+                <rect x="3" y="14" width="7" height="7" rx="1.2" />
+                <path d="M14 14h2.5v2.5H14zM18.5 14H21v3h-2.5zM14 18.5h3V21h-1.5M18.5 18.5H21V21" />
+              </svg>
+            </span>
+            <span class="tool-tile-body">
+              <span class="tool-tile-title">Generatore QR</span>
+              <span class="tool-tile-desc">Crea un codice QR da un link e scaricalo in PNG.</span>
+            </span>
+          </a>
+          <a class="tool-tile" href="tools/countdown.html">
+            <span class="tool-icon tool-icon-lg" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="13" r="8" />
+                <path d="M12 9v4l2.5 1.5" />
+                <path d="M9 3h6" />
+              </svg>
+            </span>
+            <span class="tool-tile-body">
+              <span class="tool-tile-title">Countdown</span>
+              <span class="tool-tile-desc">Imposta un orario e conta fino a quel momento a tutto schermo.</span>
+            </span>
+          </a>
+          <a class="tool-tile" href="tools/foto-pdf.html">
+            <span class="tool-icon tool-icon-lg" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9z" />
+                <path d="M14 3v6h6" />
+                <rect x="8" y="12" width="8" height="6" rx="1" />
+                <circle cx="10.2" cy="14" r="0.7" fill="currentColor" stroke="none" />
+              </svg>
+            </span>
+            <span class="tool-tile-body">
+              <span class="tool-tile-title">Foto → PDF</span>
+              <span class="tool-tile-desc">Carica foto e genera un PDF con un’immagine per pagina.</span>
+            </span>
+          </a>
+        </div>
       </section>
     </main>
 

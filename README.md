@@ -6,6 +6,7 @@ Strumenti disponibili:
 
 - **Generatore QR** — crea un codice QR da un link e lo scarica in PNG
 - **Countdown** — inserisci un orario e conta fino a quel momento
+- **Foto → PDF** — carica foto e genera un PDF con un’immagine per pagina
 
 ## Anteprima locale
 
@@ -44,12 +45,14 @@ ToolBox/
 ├── index.html          # Home
 ├── tools/
 │   ├── qr.html         # Generatore QR
-│   └── countdown.html  # Countdown orario
+│   ├── countdown.html  # Countdown orario
+│   └── foto-pdf.html   # Foto → PDF
 ├── assets/
 │   ├── styles.css
 │   ├── nav.js
 │   ├── qr.js
-│   └── countdown.js
+│   ├── countdown.js
+│   └── foto-pdf.js
 └── README.md
 ```
 
