@@ -7,6 +7,7 @@ Strumenti disponibili:
 - **Generatore QR** — crea un codice QR da un link e lo scarica in PNG
 - **Countdown** — inserisci un orario e conta fino a quel momento
 - **Foto → PDF** — carica foto e genera un PDF con un’immagine per pagina
+- **Voce limpida** — migliora un file parlato con filtri e compressione nel browser
 
 ## Anteprima locale
 
@@ -46,13 +47,15 @@ ToolBox/
 ├── tools/
 │   ├── qr.html         # Generatore QR
 │   ├── countdown.html  # Countdown orario
-│   └── foto-pdf.html   # Foto → PDF
+│   ├── foto-pdf.html   # Foto → PDF
+│   └── voce.html       # Voce limpida
 ├── assets/
 │   ├── styles.css
 │   ├── nav.js
 │   ├── qr.js
 │   ├── countdown.js
-│   └── foto-pdf.js
+│   ├── foto-pdf.js
+│   └── voce.js
 └── README.md
 ```
 
