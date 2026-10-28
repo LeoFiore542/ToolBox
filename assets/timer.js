@@ -3,6 +3,7 @@
   const workInput = document.getElementById("timer-work");
   const shortInput = document.getElementById("timer-short");
   const longInput = document.getElementById("timer-long");
+  const fontSelect = document.getElementById("timer-font");
   const errorEl = document.getElementById("timer-error");
   const stageEl = document.getElementById("timer-stage");
   const closeBtn = document.getElementById("timer-close");
@@ -20,6 +21,7 @@
   if (!form || !workInput || !stageEl) return;
 
   const DEFAULTS = { work: 25, short: 5, long: 15 };
+  const FONT_VALUES = new Set(["serif", "sans", "rounded", "mono", "outfit"]);
   const MODE_LABELS = {
     work: "Lavoro",
     short: "Pausa breve",
@@ -33,6 +35,7 @@
   let endsAt = null;
   let tickId = null;
   let durations = { ...DEFAULTS };
+  let closeArmedAt = 0;
 
   function pad(value) {
     return String(value).padStart(2, "0");
@@ -56,25 +59,26 @@
   }
 
   function readDurations() {
-    const work = Number(workInput.value);
-    const short = Number(shortInput.value);
-    const long = Number(longInput.value);
+    normalizeInputs();
 
-    if (
-      !Number.isInteger(work) ||
-      !Number.isInteger(short) ||
-      !Number.isInteger(long) ||
-      work < 1 ||
-      short < 1 ||
-      long < 1 ||
-      work > 180 ||
-      short > 60 ||
-      long > 90
-    ) {
+    const work = clampInt(workInput.value, 1, 180, DEFAULTS.work);
+    const short = clampInt(shortInput.value, 1, 60, DEFAULTS.short);
+    const long = clampInt(longInput.value, 1, 90, DEFAULTS.long);
+
+    if (work < 1 || short < 1 || long < 1) {
       return null;
     }
 
     return { work, short, long };
+  }
+
+  function selectedFont() {
+    const value = fontSelect?.value || "serif";
+    return FONT_VALUES.has(value) ? value : "serif";
+  }
+
+  function applyFont() {
+    stageEl.dataset.font = selectedFont();
   }
 
   function stopTicker() {
@@ -193,6 +197,8 @@
     totalMs = durations[mode] * 60 * 1000;
     remainingMs = totalMs;
     endsAt = Date.now() + remainingMs;
+    applyFont();
+    closeArmedAt = Date.now() + 400;
     setStageOpen(true);
     setRunningView();
     renderTime(remainingMs);
@@ -202,19 +208,22 @@
   }
 
   function closeStage() {
+    if (Date.now() < closeArmedAt) return;
     stopTicker();
     endsAt = null;
     running = false;
     remainingMs = 0;
     totalMs = 0;
     mode = "work";
+    closeArmedAt = 0;
     setStageOpen(false);
     document.title = "Timer — ToolBox";
   }
 
   function startFromSetup(event) {
     event.preventDefault();
-    normalizeInputs();
+    event.stopPropagation();
+
     const selected = readDurations();
     if (!selected) {
       showError("Inserisci durate valide in minuti (numeri interi ≥ 1).");
@@ -227,10 +236,15 @@
   }
 
   form.addEventListener("submit", startFromSetup);
-  closeBtn.addEventListener("click", closeStage);
+  closeBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    closeStage();
+  });
   pickShortBtn.addEventListener("click", () => startMode("short"));
   pickLongBtn.addEventListener("click", () => startMode("long"));
   pickWorkBtn.addEventListener("click", () => startMode("work"));
+  fontSelect?.addEventListener("change", applyFont);
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !stageEl.hidden) {
@@ -243,4 +257,5 @@
   });
 
   normalizeInputs();
+  applyFont();
 })();

@@ -922,9 +922,16 @@ body.timer-active {
   display: none;
 }
 
-.timer-stage > *:not(.timer-stage-burst) {
+.timer-stage > *:not(.timer-stage-burst):not(.countdown-close) {
   position: relative;
   z-index: 1;
+}
+
+.timer-stage .countdown-close {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.15rem;
+  z-index: 2;
 }
 
 .timer-stage-display {
@@ -932,13 +939,53 @@ body.timer-active {
   align-items: baseline;
   justify-content: center;
   gap: 0.12rem;
-  font-family: var(--font-display);
+  font-family: var(--timer-font, var(--font-display));
   font-size: clamp(5.5rem, 22vw, 12rem);
   font-weight: 400;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.04em;
   line-height: 0.9;
   color: var(--ink);
+}
+
+.timer-stage[data-font="serif"] {
+  --timer-font: "Instrument Serif", Georgia, serif;
+}
+
+.timer-stage[data-font="sans"] {
+  --timer-font: "Space Grotesk", "Outfit", sans-serif;
+}
+
+.timer-stage[data-font="sans"] .timer-stage-display {
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.timer-stage[data-font="rounded"] {
+  --timer-font: "DM Sans", "Outfit", sans-serif;
+}
+
+.timer-stage[data-font="rounded"] .timer-stage-display {
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.timer-stage[data-font="mono"] {
+  --timer-font: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.timer-stage[data-font="mono"] .timer-stage-display {
+  font-weight: 600;
+  letter-spacing: -0.06em;
+}
+
+.timer-stage[data-font="outfit"] {
+  --timer-font: "Outfit", sans-serif;
+}
+
+.timer-stage[data-font="outfit"] .timer-stage-display {
+  font-weight: 600;
+  letter-spacing: -0.04em;
 }
 
 .timer-stage .timer-colon {
@@ -1011,12 +1058,26 @@ body.timer-active {
 
 .timer-choice-label {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: var(--timer-font, var(--font-display));
   font-size: clamp(2.4rem, 7vw, 4rem);
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--ink);
+}
+
+.timer-stage[data-font="sans"] .timer-choice-label,
+.timer-stage[data-font="rounded"] .timer-choice-label,
+.timer-stage[data-font="outfit"] .timer-choice-label {
+  font-weight: 700;
+}
+
+.timer-stage[data-font="mono"] .timer-choice-label {
+  font-weight: 600;
+}
+
+.timer-settings select {
+  font-family: inherit;
 }
 
 .timer-choice-label[hidden] {
