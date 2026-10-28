@@ -838,6 +838,165 @@ body.countdown-active {
   margin-top: 0.25rem;
 }
 
+.timer-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1.5rem;
+  align-items: start;
+  animation: rise 0.75s ease 0.1s both;
+}
+
+.timer-settings {
+  max-width: none;
+}
+
+.timer-durations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.timer-duration {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0 !important;
+}
+
+.timer-duration input {
+  width: 100%;
+  min-height: 3.2rem;
+  padding: 0.7rem 0.6rem;
+  border: 1px solid rgba(16, 35, 28, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  -moz-appearance: textfield;
+}
+
+.timer-duration input::-webkit-outer-spin-button,
+.timer-duration input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.timer-duration input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(15, 138, 95, 0.15);
+}
+
+.timer-duration input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.timer-panel {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.4rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(16, 35, 28, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.timer-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.timer-mode {
+  min-height: 2.6rem;
+  padding: 0.55rem 0.5rem;
+  border: 1px solid rgba(16, 35, 28, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.timer-mode:hover {
+  border-color: rgba(15, 138, 95, 0.35);
+  color: var(--ink);
+}
+
+.timer-mode.is-active {
+  background: rgba(15, 138, 95, 0.12);
+  border-color: rgba(15, 138, 95, 0.45);
+  color: var(--accent-deep);
+}
+
+.timer-panel[data-mode="short"] .timer-mode.is-active,
+.timer-panel[data-mode="long"] .timer-mode.is-active {
+  background: rgba(16, 35, 28, 0.08);
+  border-color: rgba(16, 35, 28, 0.28);
+  color: var(--ink);
+}
+
+.timer-status {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.timer-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.15rem;
+  margin: 0.35rem 0 0.15rem;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 14vw, 6.5rem);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.timer-colon {
+  color: var(--accent);
+  transform: translateY(-0.08em);
+}
+
+.timer-panel.is-running .timer-display {
+  color: var(--accent-deep);
+}
+
+.timer-progress-wrap {
+  max-width: none;
+  width: 100%;
+  margin: 0.35rem 0 0;
+}
+
+.timer-sessions {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.timer-sessions strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-actions {
+  margin-top: 0.35rem;
+}
+
 .pdf-layout {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -1292,7 +1451,13 @@ body.countdown-active {
 
   .qr-layout,
   .pdf-layout,
-  .voce-layout {
+  .voce-layout,
+  .timer-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .timer-durations,
+  .timer-modes {
     grid-template-columns: 1fr;
   }
 

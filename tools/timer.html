@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timer — ToolBox</title>
+  <meta name="description" content="Timer di lavoro con pause brevi e lunghe. Imposta i minuti e avvia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Strumenti" aria-hidden="true">
+    <div class="sidebar-top">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">ToolBox</span>
+      </a>
+      <button type="button" class="icon-btn" id="sidebar-close" aria-label="Chiudi menu strumenti">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <p class="sidebar-label">Strumenti</p>
+    <nav class="sidebar-nav">
+      <a class="sidebar-link" href="qr.html">
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.2" />
+            <rect x="14" y="3" width="7" height="7" rx="1.2" />
+            <rect x="3" y="14" width="7" height="7" rx="1.2" />
+            <path d="M14 14h2.5v2.5H14zM18.5 14H21v3h-2.5zM14 18.5h3V21h-1.5M18.5 18.5H21V21" />
+          </svg>
+        </span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Generatore QR</span>
+          <span class="sidebar-desc">Link → codice scaricabile</span>
+        </span>
+      </a>
+      <a class="sidebar-link" href="countdown.html">
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8" />
+            <path d="M12 9v4l2.5 1.5" />
+            <path d="M9 3h6" />
+          </svg>
+        </span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Countdown</span>
+          <span class="sidebar-desc">Timer fino a un orario</span>
+        </span>
+      </a>
+      <a class="sidebar-link is-active" href="timer.html" aria-current="page">
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 3h10" />
+            <path d="M7 21h10" />
+            <path d="M8 3c0 3.5 2 5 4 7s4 3.5 4 7" />
+            <path d="M16 21c0-3.5-2-5-4-7s-4-3.5-4-7" />
+          </svg>
+        </span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Timer</span>
+          <span class="sidebar-desc">Lavoro e pause</span>
+        </span>
+      </a>
+      <a class="sidebar-link" href="foto-pdf.html">
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9z" />
+            <path d="M14 3v6h6" />
+            <rect x="8" y="12" width="8" height="6" rx="1" />
+            <circle cx="10.2" cy="14" r="0.7" fill="currentColor" stroke="none" />
+          </svg>
+        </span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Foto → PDF</span>
+          <span class="sidebar-desc">Immagini in un documento</span>
+        </span>
+      </a>
+      <a class="sidebar-link" href="voce.html">
+        <span class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="2" width="6" height="11" rx="3" />
+            <path d="M5 10a7 7 0 0 0 14 0" />
+            <path d="M12 17v4" />
+            <path d="M9 21h6" />
+          </svg>
+        </span>
+        <span class="sidebar-text">
+          <span class="sidebar-title">Voce limpida</span>
+          <span class="sidebar-desc">Pulisci file parlati</span>
+        </span>
+      </a>
+    </nav>
+
+    <p class="sidebar-foot">GitHub Pages</p>
+  </aside>
+
+  <div class="content">
+    <header class="topbar">
+      <button
+        type="button"
+        class="icon-btn menu-btn"
+        id="sidebar-toggle"
+        aria-expanded="false"
+        aria-controls="sidebar"
+        aria-label="Apri menu strumenti"
+      >
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+      <a class="brand brand-compact" href="../index.html">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">ToolBox</span>
+      </a>
+    </header>
+
+    <main class="tool-page">
+      <header class="tool-intro">
+        <p class="eyebrow">Strumento</p>
+        <h1>Timer</h1>
+        <p class="tool-intro-text">Imposta i minuti di lavoro e delle pause. Di default: 25 di lavoro, 5 di pausa breve e 15 di pausa lunga.</p>
+      </header>
+
+      <div class="timer-layout">
+        <form id="timer-settings" class="qr-form timer-settings" novalidate>
+          <p class="countdown-field-label" id="timer-durations-label">Durate (minuti)</p>
+
+          <div class="timer-durations" role="group" aria-labelledby="timer-durations-label">
+            <label class="timer-duration">
+              <span class="countdown-time-caption">Lavoro</span>
+              <input
+                id="timer-work"
+                name="work"
+                type="number"
+                inputmode="numeric"
+                min="1"
+                max="180"
+                step="1"
+                value="25"
+                required
+              />
+            </label>
+            <label class="timer-duration">
+              <span class="countdown-time-caption">Pausa breve</span>
+              <input
+                id="timer-short"
+                name="short"
+                type="number"
+                inputmode="numeric"
+                min="1"
+                max="60"
+                step="1"
+                value="5"
+                required
+              />
+            </label>
+            <label class="timer-duration">
+              <span class="countdown-time-caption">Pausa lunga</span>
+              <input
+                id="timer-long"
+                name="long"
+                type="number"
+                inputmode="numeric"
+                min="1"
+                max="90"
+                step="1"
+                value="15"
+                required
+              />
+            </label>
+          </div>
+
+          <p id="timer-error" class="form-error" role="alert" hidden></p>
+        </form>
+
+        <section class="timer-panel" aria-labelledby="timer-mode-label">
+          <p class="countdown-field-label" id="timer-mode-label">Modalità</p>
+          <div class="timer-modes" role="tablist" aria-label="Modalità timer">
+            <button type="button" class="timer-mode is-active" data-mode="work" role="tab" aria-selected="true">
+              Lavoro
+            </button>
+            <button type="button" class="timer-mode" data-mode="short" role="tab" aria-selected="false">
+              Pausa breve
+            </button>
+            <button type="button" class="timer-mode" data-mode="long" role="tab" aria-selected="false">
+              Pausa lunga
+            </button>
+          </div>
+
+          <p id="timer-status" class="timer-status">Pronto</p>
+
+          <div
+            id="timer-display"
+            class="timer-display"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <span id="timer-minutes">25</span><span class="timer-colon" aria-hidden="true">:</span><span id="timer-seconds">00</span>
+          </div>
+
+          <div class="countdown-progress-wrap timer-progress-wrap">
+            <div
+              class="countdown-progress"
+              id="timer-progress"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="100"
+              aria-label="Tempo rimanente"
+            >
+              <div id="timer-progress-bar" class="countdown-progress-bar"></div>
+            </div>
+          </div>
+
+          <p class="timer-sessions">
+            Sessioni completate: <strong id="timer-session-count">0</strong>
+          </p>
+
+          <div class="form-actions timer-actions">
+            <button type="button" id="timer-toggle" class="btn btn-primary">Avvia</button>
+            <button type="button" id="timer-skip" class="btn btn-secondary">Salta</button>
+            <button type="button" id="timer-reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>ToolBox · timer</p>
+    </footer>
+  </div>
+
+  <script src="../assets/nav.js"></script>
+  <script src="../assets/timer.js"></script>
+</body>
+</html>
