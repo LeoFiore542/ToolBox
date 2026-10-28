@@ -125,117 +125,106 @@
       <header class="tool-intro">
         <p class="eyebrow">Strumento</p>
         <h1>Timer</h1>
-        <p class="tool-intro-text">Imposta i minuti di lavoro e delle pause. Di default: 25 di lavoro, 5 di pausa breve e 15 di pausa lunga.</p>
+        <p class="tool-intro-text">Imposta i minuti di lavoro e delle pause. Di default: 25 di lavoro, 5 di pausa breve e 15 di pausa lunga. Avvia quando sei pronto: nulla parte in automatico.</p>
       </header>
 
-      <div class="timer-layout">
-        <form id="timer-settings" class="qr-form timer-settings" novalidate>
-          <p class="countdown-field-label" id="timer-durations-label">Durate (minuti)</p>
+      <form id="timer-settings" class="qr-form timer-settings countdown-setup" novalidate>
+        <p class="countdown-field-label" id="timer-durations-label">Durate (minuti)</p>
 
-          <div class="timer-durations" role="group" aria-labelledby="timer-durations-label">
-            <label class="timer-duration">
-              <span class="countdown-time-caption">Lavoro</span>
-              <input
-                id="timer-work"
-                name="work"
-                type="number"
-                inputmode="numeric"
-                min="1"
-                max="180"
-                step="1"
-                value="25"
-                required
-              />
-            </label>
-            <label class="timer-duration">
-              <span class="countdown-time-caption">Pausa breve</span>
-              <input
-                id="timer-short"
-                name="short"
-                type="number"
-                inputmode="numeric"
-                min="1"
-                max="60"
-                step="1"
-                value="5"
-                required
-              />
-            </label>
-            <label class="timer-duration">
-              <span class="countdown-time-caption">Pausa lunga</span>
-              <input
-                id="timer-long"
-                name="long"
-                type="number"
-                inputmode="numeric"
-                min="1"
-                max="90"
-                step="1"
-                value="15"
-                required
-              />
-            </label>
-          </div>
+        <div class="timer-durations" role="group" aria-labelledby="timer-durations-label">
+          <label class="timer-duration">
+            <span class="countdown-time-caption">Lavoro</span>
+            <input
+              id="timer-work"
+              name="work"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="180"
+              step="1"
+              value="25"
+              required
+            />
+          </label>
+          <label class="timer-duration">
+            <span class="countdown-time-caption">Pausa breve</span>
+            <input
+              id="timer-short"
+              name="short"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="60"
+              step="1"
+              value="5"
+              required
+            />
+          </label>
+          <label class="timer-duration">
+            <span class="countdown-time-caption">Pausa lunga</span>
+            <input
+              id="timer-long"
+              name="long"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="90"
+              step="1"
+              value="15"
+              required
+            />
+          </label>
+        </div>
 
-          <p id="timer-error" class="form-error" role="alert" hidden></p>
-        </form>
+        <p id="timer-error" class="form-error" role="alert" hidden></p>
 
-        <section class="timer-panel" aria-labelledby="timer-mode-label">
-          <p class="countdown-field-label" id="timer-mode-label">Modalità</p>
-          <div class="timer-modes" role="tablist" aria-label="Modalità timer">
-            <button type="button" class="timer-mode is-active" data-mode="work" role="tab" aria-selected="true">
-              Lavoro
-            </button>
-            <button type="button" class="timer-mode" data-mode="short" role="tab" aria-selected="false">
-              Pausa breve
-            </button>
-            <button type="button" class="timer-mode" data-mode="long" role="tab" aria-selected="false">
-              Pausa lunga
-            </button>
-          </div>
-
-          <p id="timer-status" class="timer-status">Pronto</p>
-
-          <div
-            id="timer-display"
-            class="timer-display"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <span id="timer-minutes">25</span><span class="timer-colon" aria-hidden="true">:</span><span id="timer-seconds">00</span>
-          </div>
-
-          <div class="countdown-progress-wrap timer-progress-wrap">
-            <div
-              class="countdown-progress"
-              id="timer-progress"
-              role="progressbar"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-valuenow="100"
-              aria-label="Tempo rimanente"
-            >
-              <div id="timer-progress-bar" class="countdown-progress-bar"></div>
-            </div>
-          </div>
-
-          <p class="timer-sessions">
-            Sessioni completate: <strong id="timer-session-count">0</strong>
-          </p>
-
-          <div class="form-actions timer-actions">
-            <button type="button" id="timer-toggle" class="btn btn-primary">Avvia</button>
-            <button type="button" id="timer-skip" class="btn btn-secondary">Salta</button>
-            <button type="button" id="timer-reset" class="btn btn-secondary">Reset</button>
-          </div>
-        </section>
-      </div>
+        <div class="form-actions">
+          <button type="submit" id="timer-start" class="btn btn-primary">Avvia lavoro</button>
+        </div>
+      </form>
     </main>
 
     <footer class="site-footer">
       <p>ToolBox · timer</p>
     </footer>
   </div>
+
+  <section
+    id="timer-stage"
+    class="timer-stage"
+    hidden
+    aria-live="polite"
+    aria-label="Timer a tutto schermo"
+  >
+    <button type="button" id="timer-close" class="icon-btn countdown-close" aria-label="Chiudi timer">
+      <span aria-hidden="true">×</span>
+    </button>
+
+    <div class="timer-stage-burst" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div
+      id="timer-stage-display"
+      class="timer-stage-display"
+      aria-atomic="true"
+    >
+      <span id="timer-minutes">25</span><span class="timer-colon" aria-hidden="true">:</span><span id="timer-seconds">00</span>
+    </div>
+
+    <div id="timer-choice" class="timer-choice" hidden>
+      <p id="timer-choice-label" class="timer-choice-label">Pausa</p>
+      <div id="timer-choice-break" class="timer-choice-actions" hidden>
+        <button type="button" id="timer-pick-short" class="btn timer-btn-short">Breve</button>
+        <button type="button" id="timer-pick-long" class="btn timer-btn-long">Lunga</button>
+      </div>
+      <div id="timer-choice-work" class="timer-choice-actions" hidden>
+        <button type="button" id="timer-pick-work" class="btn btn-primary">Lavoro</button>
+      </div>
+    </div>
+  </section>
 
   <script src="../assets/nav.js"></script>
   <script src="../assets/timer.js"></script>
